@@ -1,18 +1,21 @@
 # Josef Schulze - Senior Data Engineer
 
-Portfolio | GitHub | Open to Remote / Contract Opportunities
+Portfolio | GitHub | Open to: Onsite / Hybrid / Remote / Contract Opportunities
 
-[LinkedIn](https://www.linkedin.com/in/josef-m-schulze) | [Email](mailto:josef.m.schulze@gmail.com) | Farmington, Missouri
+[LinkedIn](https://www.linkedin.com/in/josef-m-schulze) | [Email](mailto:josef.m.schulze@gmail.com) | Farmington, Missouri (Greater St. Louis Area)
 
 ---
 
 ## Professional Summary
 
-Data Engineer with extensive experience designing and implementing custom ETL solutions, automating processes, and optimizing database performance. Strong communicator with a proven ability to collaborate with stakeholders, mentor teams, and deliver enterprise solutions. I have 20+ years in IT and database development, with deep expertise in PostgreSQL, Python, AWS, and large-scale Salesforce data migrations.
+Data Engineer with extensive experience designing and implementing custom ETL solutions, automating processes, and optimizing database performance in enterprise environments. Strong communicator with a proven ability to collaborate with stakeholders, mentor teams, and deliver complex solutions.
 
-I led key components of the Conductor Pipeline platform that supported consolidation across 13 global instances. I am currently available for remote Data Engineering, SQL consulting, pipeline work, or broader IT roles. I am actively building public projects to demonstrate current skills in modern data platforms and AI tools.
+At **Bayer Crop Science** I led key components of the Conductor Pipeline, a custom ETL/ELT platform that supported the consolidation of 13 regional Salesforce instances into a single global organization. 
 
----
+At **AT&T** (and predecessor SBC), I designed and delivered multiple enterprise web applications and database solutions including Alarm Linkage, Configuration Management Database, Contact Center Performance Management, and the Invention Disclosure System.
+
+I have 20+ years in IT and database development with deep expertise in PostgreSQL, Python, AWS, and large-scale data migrations. I am currently available for Data Engineering, SQL consulting, pipeline development, or broader IT roles. I am actively building public projects to demonstrate current hands-on skills in modern data platforms and AI tools.
+
 
 ## Featured Projects
 
