@@ -1,0 +1,36 @@
+name: Economic & Market ETL Pipeline
+
+on:
+  push:
+    paths:
+      - 'projects/economic-market-etl/**'
+  schedule:
+    - cron: '0 10 * * *'        # Daily at 10 AM UTC
+  workflow_dispatch:            # Manual run button
+
+jobs:
+  run-economic-market-etl:
+    runs-on: ubuntu-latest
+    name: Run Economic & Market ETL Pipeline
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        working-directory: ./projects/economic-market-etl
+        run: pip install -r requirements.txt
+
+      - name: Run ETL Pipeline
+        working-directory: ./projects/economic-market-etl
+        env:
+          FRED_API_KEY: ${{ secrets.FRED_API_KEY }}
+        run: python run_pipeline.py
+
+      - name: Pipeline Summary
+        run: echo "✅ Economic & Market ETL Pipeline completed successfully"
