@@ -1,0 +1,27 @@
+# Planning file not to publish
+portfolio.planning.txt
+
+
+# Personal projects not ready to publish
+projects/rename_media/
+
+# Environment files
+data-pipelines/**/.env
+projects/**/.env
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+
+# OS files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Logs
+*.log

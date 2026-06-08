@@ -19,8 +19,8 @@ I have 20+ years in IT and database development with deep expertise in PostgreSQ
 
 ## Featured Projects
 
-- **[Economic & Market Data ETL Pipeline](data-pipelines/economic-market-etl/)** — Live, repeatable pipeline using pandas + SQLAlchemy to pull current FRED economic indicators + Yahoo Finance stock data into PostgreSQL
-- **[Conductor Pipeline](projects/conductor-summary.md)** — Enterprise ETL/ELT platform (Kafka → PostgreSQL → Salesforce)
+- **[Economic & Market Data ETL Pipeline](projects/economic-market-etl/)** — Live, repeatable pipeline using pandas + SQLAlchemy to pull current FRED economic indicators + Yahoo Finance stock data into PostgreSQL
+- **[Conductor Pipeline](projects/conductor-pipeline)** — Enterprise ETL/ELT platform (Kafka → PostgreSQL → Salesforce)
 - **SQL Query Gallery** — Advanced, production-grade queries with explanations (coming soon)
 
 
@@ -39,3 +39,5 @@ I have 20+ years in IT and database development with deep expertise in PostgreSQ
 
 Last updated: June 2026  
 Hosted on GitHub Pages
+
+
