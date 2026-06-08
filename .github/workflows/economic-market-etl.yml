@@ -5,8 +5,8 @@ on:
     paths:
       - 'projects/economic-market-etl/**'
   schedule:
-    - cron: '0 10 * * *'        # Daily at 10 AM UTC
-  workflow_dispatch:            # Manual run button
+    - cron: '0 10 * * *'
+  workflow_dispatch:
 
 jobs:
   run-economic-market-etl:
@@ -33,4 +33,4 @@ jobs:
         run: python run_pipeline.py
 
       - name: Pipeline Summary
-        run: echo "✅ Economic & Market ETL Pipeline completed successfully"
+        run: echo "✅ Economic & Market ETL Pipeline completed successfully on GitHub Actions"
