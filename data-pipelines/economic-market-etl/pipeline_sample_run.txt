@@ -1,0 +1,64 @@
+python run_pipeline.py
+=== Starting Economic & Market Data ETL Pipeline ===
+
+Fetching economic data from FRED...
+  ✓ GDP: 31819.464 (2026-01-01)
+  ✓ Unemployment_Rate: 4.3 (2026-05-01)
+  ✓ Inflation_CPI: 332.407 (2026-04-01)
+  ✓ Fed_Funds_Rate: 3.63 (2026-05-01)
+  ✓ Industrial_Production: 102.4963 (2026-04-01)
+Fetching stock market data...
+  ✓ SPY: $737.55 on 2026-06-05
+  ✓ QQQ: $705.06 on 2026-06-05
+  ✓ DIA: $509.7 on 2026-06-05
+  ✓ ^VIX: $21.51 on 2026-06-05
+Loaded 5 records to table 'etl_data.economic_indicators'
+Loaded 4 records to table 'etl_data.market_data'
+
+=== Pipeline completed successfully! ===
+
+
+psql postgres://portfolio_user:(REDACTED)@localhost:5432/portfolio_db
+psql (14.23 (Ubuntu 14.23-0ubuntu0.22.04.1))
+SSL connection (protocol: TLSv1.3, cipher: TLS_AES_256_GCM_SHA384, bits: 256, compression: off)
+Type "help" for help.
+
+
+portfolio_db-> \dt etl_data.*
+                List of relations
+  Schema  |        Name         | Type  | Owner  
+----------+---------------------+-------+--------
+ etl_data | economic_indicators | table | js7321
+ etl_data | market_data         | table | js7321
+(2 rows)
+
+
+
+portfolio_db=> \pset pager off
+Pager usage is off.
+portfolio_db=> \x off
+Expanded display is off.
+
+
+
+
+portfolio_db=> select * from etl_data.economic_indicators;
+ id |       indicator       |    value     |    date    | data_type |         loaded_at          
+----+-----------------------+--------------+------------+-----------+----------------------------
+  1 | GDP                   | 31819.464000 | 2026-01-01 | economic  | 2026-06-07 23:10:19.084774
+  2 | Unemployment_Rate     |     4.300000 | 2026-05-01 | economic  | 2026-06-07 23:10:19.084781
+  3 | Inflation_CPI         |   332.407000 | 2026-04-01 | economic  | 2026-06-07 23:10:19.084783
+  4 | Fed_Funds_Rate        |     3.630000 | 2026-05-01 | economic  | 2026-06-07 23:10:19.084784
+  5 | Industrial_Production |   102.496300 | 2026-04-01 | economic  | 2026-06-07 23:10:19.084786
+(5 rows)
+
+portfolio_db=> select * from etl_data.market_data;
+ id | symbol | close_price |  volume  |    date    | data_type |         loaded_at          
+----+--------+-------------+----------+------------+-----------+----------------------------
+  1 | SPY    |      737.55 | 93678100 | 2026-06-05 | market    | 2026-06-07 23:10:19.085148
+  2 | QQQ    |      705.06 | 99178800 | 2026-06-05 | market    | 2026-06-07 23:10:19.085152
+  3 | DIA    |      509.70 |  6605900 | 2026-06-05 | market    | 2026-06-07 23:10:19.085154
+  4 | ^VIX   |       21.51 |        0 | 2026-06-05 | market    | 2026-06-07 23:10:19.085155
+(4 rows)
+
+portfolio_db=> 
