@@ -37,4 +37,4 @@ Detailed technical write-up available upon request.
 ---
 
 
-[Back to Projects](../README.md#featured-projects) | [Back to Home](../README.md)
+[Back to Projects](../../README.md#featured-projects) | [Back to Home](../../README.md)
