@@ -16,9 +16,10 @@ I led key components of the Conductor Pipeline platform that supported consolida
 
 ## Featured Projects
 
-- [Conductor Pipeline](projects/conductor-summary.md) - Scalable ETL/ELT platform (Kafka to PostgreSQL to Salesforce)
-- Public Data Pipelines - End-to-end ETL examples using open datasets (in progress)
-- SQL Query Gallery - Advanced, production-grade queries with explanations
+- **[Economic & Market Data ETL Pipeline](data-pipelines/economic-market-etl/)** — Live, repeatable pipeline using pandas + SQLAlchemy to pull current FRED economic indicators + Yahoo Finance stock data into PostgreSQL
+- **[Conductor Pipeline](projects/conductor-summary.md)** — Enterprise ETL/ELT platform (Kafka → PostgreSQL → Salesforce)
+- **SQL Query Gallery** — Advanced, production-grade queries with explanations (coming soon)
+
 
 ## Technical Skills
 
