@@ -29,5 +29,9 @@ I led key components of the Conductor Pipeline platform that supported consolida
 
 ---
 
+[About Me](about.md)
+
+---
+
 Last updated: June 2026  
 Hosted on GitHub Pages
