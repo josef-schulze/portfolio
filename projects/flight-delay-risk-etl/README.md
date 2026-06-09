@@ -23,9 +23,9 @@ The risk score is calculated using the following weighted components:
 
 1. **Base Score** = (Wind Speed in mph × 1.5) + (Gust Speed in mph × 0.8)
 2. **Visibility Penalty**:
-   - < 1 mile → **+50**
+   - &lt; 1 mile → **+50**
    - 1 to 3 miles → **+30**
-   - > 3 miles → **+0**
+   - &gt; 3 miles → **+0**
 3. **Precipitation / Severe Weather Penalty** → **+40** if the weather description contains any of: snow, thunderstorm, ice, freezing, rain, fog, or hail.
 4. **Temperature Extreme Penalty** → **+15** if temperature is below **23°F** or above **95°F**.
 
