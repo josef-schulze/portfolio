@@ -16,7 +16,6 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
-          # Crucial: Fetches full history so Git can resolve remote changes
           fetch-depth: 0
 
       - name: Set up Python
@@ -37,12 +36,22 @@ jobs:
           python visualize.py
 
       - name: Commit and Push Changes
-        uses: stefanzweifel/git-auto-commit-action@v5
-        with:
-          commit_message: Update Flight Risk Dashboard (Automated)
+        run: |
+          git config --global --add safe.directory "$GITHUB_WORKSPACE"
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
           
-          # Target only the exact folder files from root context
-          file_pattern: 'projects/flight-delay-risk-etl/flight_history.db projects/flight-delay-risk-etl/latest_risk.png'
+          # Stage the specific files
+          git add projects/flight-delay-risk-etl/flight_history.db projects/flight-delay-risk-etl/latest_risk.png
           
-          # Force a rebase pull if the remote branch moved ahead during execution
-          pull_strategy: 'rebase'
+          # Real check: Only commit if the files actually changed content
+          if [ -n "$(git status --porcelain)" ]; then
+            git commit -m "Update Flight Risk Dashboard - $(date +'%Y-%m-%d %H:%M UTC')"
+            
+            # Rebase pull loop to safely upload
+            for i in {1..3}; do
+              git pull --rebase origin main && git push origin main && break || sleep 5
+            done
+          else
+            echo "No data changes detected. Skipping push."
+          fi
