@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: write   # This is the key fix
+  contents: write
 
 jobs:
   update-dashboard:
@@ -44,6 +44,10 @@ jobs:
           cd projects/flight-delay-risk-etl
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
+          
+          # Pull latest changes first to avoid conflicts
+          git pull --rebase origin main
+          
           git add flight_history.db latest_risk.png
           git diff --staged --quiet || git commit -m "Update Flight Risk Dashboard - $(date +'%Y-%m-%d %H:%M UTC')"
           git push
