@@ -33,7 +33,7 @@ def generate_dashboard():
     print("✅ First plotted timestamp:", plot_times.iloc[0])
     
     sns.set_theme(style="whitegrid")
-    fig = plt.figure(figsize=(14, 12))
+    fig = plt.figure(figsize=(14, 13.5))   # Slightly taller for better spacing
     
     # Consistent colors
     color_dict = {code: color for code, color in zip(AIRPORT_INFO.keys(), sns.color_palette("tab10", len(AIRPORT_INFO)))}
@@ -50,7 +50,7 @@ def generate_dashboard():
         sns.lineplot(data=temp_data, x='observation_time', y='risk_score',
                     ax=ax1, marker='o', linewidth=2.5, label=label, color=color_dict[code])
     
-    ax1.set_title("Flight Delay Risk Score - All Airports", fontsize=16)
+    ax1.set_title("Flight Delay Risk Score - All Airports", fontsize=16, fontweight='bold')
     ax1.set_ylabel("Risk Score (0-100)")
     ax1.set_xlabel("Observation Time (Central Time)")
     ax1.legend(bbox_to_anchor=(1.05, 1), loc='upper left', fontsize=9)
@@ -58,14 +58,12 @@ def generate_dashboard():
     ax1.grid(True)
     ax1.xaxis.set_major_formatter(plt.matplotlib.dates.DateFormatter('%I:%M %p', tz=TZ))
     
-    # Bottom: Fixed order bar chart with rich labels
+    # Bottom: Bar Chart
     ax2 = plt.subplot(2, 1, 2)
     
-    # Use fixed order from AIRPORT_INFO (matches legend)
     latest = pd.DataFrame({'airport_code': list(AIRPORT_INFO.keys())})
     latest = latest.merge(df.groupby('airport_code').last().reset_index(), on='airport_code', how='left')
     
-    # Calculate changes
     changes = []
     for code in latest['airport_code']:
         hist = df[df['airport_code'] == code].sort_values('observation_time')
@@ -73,7 +71,6 @@ def generate_dashboard():
         changes.append(change)
     latest['change'] = changes
     
-    # Rich multi-line label
     def make_label(row):
         temp_f = round(row['temperature_c'] * 9/5 + 32) if pd.notna(row['temperature_c']) else '?'
         wind = round(row['wind_mph']) if pd.notna(row['wind_mph']) else '?'
@@ -97,13 +94,13 @@ def generate_dashboard():
         legend=False
     )
     
-    ax2.set_title("Current Risk Levels + Conditions", fontsize=14)
+    ax2.set_title("Current Risk Levels + Conditions", fontsize=16, fontweight='bold')
     ax2.set_ylabel("Risk Score (0-100)")
     ax2.set_xlabel("")
     ax2.set_ylim(0, 100)
-    plt.xticks(rotation=45, ha='right')
+    plt.xticks(rotation=45, ha='right', fontsize=11)
     
-    # Value labels with change arrows
+    # Value labels
     for i, p in enumerate(ax2.patches):
         height = p.get_height() if not pd.isna(p.get_height()) else 0
         change = latest.iloc[i]['change']
@@ -121,7 +118,8 @@ def generate_dashboard():
                  f"Updated: {datetime.now(TZ).strftime('%Y-%m-%d %I:%M %p %Z')}", 
                  fontsize=18, y=0.96)
     
-    plt.tight_layout(rect=[0, 0.05, 1, 0.95])
+    # Increased space between the two charts
+    plt.tight_layout(rect=[0, 0.05, 1, 0.95], h_pad=4.0)
     plt.savefig(IMAGE_OUTPUT, dpi=300, bbox_inches='tight')
     plt.close()
     
