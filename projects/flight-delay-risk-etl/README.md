@@ -34,6 +34,9 @@ Any calculated value below 0 is set to 0, and any value above 100 is set to 100.
 
 This ensures the risk score is always a clean number between 0 (no weather risk) and 100 (extreme weather risk).
 
+> ⚠️ **Portfolio Note on Data Intent:** This scoring algorithm functions as an engineering proxy designed to simulate high-variability metrics for ETL pipeline and data visualization testing. It is intentionally optimized to showcase data processing capabilities, error handling, and dynamic chart updates rather than true meteorological or FAA-certified aviation accuracy.
+
+
 ---
 
 ## Quick Start (Local)
