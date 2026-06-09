@@ -2,8 +2,8 @@ name: Update Flight Delay Risk Dashboard
 
 on:
   schedule:
-    - cron: '0 * * * *'     # Runs at the top of every hour (once per hour)
-  workflow_dispatch:        # Allows manual trigger from GitHub UI
+    - cron: '0 * * * *'     # Once per hour
+  workflow_dispatch:        # Manual trigger
 
 jobs:
   update-dashboard:
@@ -12,8 +12,6 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -22,20 +20,25 @@ jobs:
 
       - name: Install dependencies
         run: |
+          cd projects/flight-delay-risk-etl
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
       - name: Run ETL Pipeline
-        run: python etl.py
+        run: |
+          cd projects/flight-delay-risk-etl
+          python etl.py
 
       - name: Generate Visualization
-        run: python visualize.py
+        run: |
+          cd projects/flight-delay-risk-etl
+          python visualize.py
 
       - name: Commit and push updated files
         run: |
+          cd projects/flight-delay-risk-etl
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add flight_history.db latest_risk.png
-          # Only commit if there are changes
           git diff --staged --quiet || git commit -m "Update Flight Risk Dashboard - $(date +'%Y-%m-%d %H:%M UTC')"
           git push
