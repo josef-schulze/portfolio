@@ -41,9 +41,13 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           
-          # More robust pull strategy
-          git pull --rebase --autostash origin main || git pull origin main
+          # More robust strategy to avoid conflicts
+          git pull --rebase origin main || true
           
           git add flight_history.db latest_risk.png
-          git diff --staged --quiet || git commit -m "Update Flight Risk Dashboard - $(date +'%Y-%m-%d %H:%M UTC')"
-          git push
+          if git diff --staged --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "Update Flight Risk Dashboard - $(date +'%Y-%m-%d %H:%M UTC')"
+            git push
+          fi
