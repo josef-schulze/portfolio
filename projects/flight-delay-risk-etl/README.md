@@ -1,6 +1,6 @@
 # Real-Time Flight Delay Risk ETL
 
-A data engineering portfolio project that ingests live weather data from NOAA, calculates a predictive Flight Delay Risk Score (0-100) for 6 major U.S. airports (including STL), stores historical data in DuckDB, and automatically generates a beautiful visualization.
+A data engineering portfolio project that ingests live weather data from NOAA, calculates a predictive Flight Delay Risk Score (0–100) for 6 major U.S. airports, stores historical data in DuckDB, and automatically generates a dynamic multi-airport visualization dashboard with real-time conditions and trend analysis.
 
 ![Flight Delay Risk Dashboard](./latest_risk.png)
 
@@ -36,9 +36,6 @@ This ensures the risk score is always a clean number between 0 (no weather risk)
 
 ---
 
-
-
-
 ## Quick Start (Local)
 
 cd flight-delay-risk-etl
@@ -72,9 +69,9 @@ This project automatically updates every hour and on manual trigger:
 
 - End-to-end ETL pipeline with real public data source
 - Domain-driven feature engineering (aviation weather risk)
-- Idempotent data handling and time-based pruning
-- Automated CI/CD with visualization output
-- Clean, maintainable, and production-ready code
+- Duplicate-resistant data loading with automatic 24-hour retention
+- Automated CI/CD pipeline that runs hourly, generates an updated visualization dashboard, and commits updated image and database to the repository
+- Clean, well-structured code suitable for a portfolio demonstration
 
 ---
 
@@ -90,8 +87,4 @@ This project automatically updates every hour and on manual trigger:
 
 Live Dashboard: Updated hourly in this repository.
 
-Author: Josef Schulze – Senior Data Architect / Data Engineer
 
----
-
-Part of a professional portfolio showcasing modern data engineering practices.

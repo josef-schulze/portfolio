@@ -21,6 +21,7 @@ I have 20+ years in IT and database development with deep expertise in PostgreSQ
 
 - **[Economic & Market Data ETL Pipeline](projects/economic-market-etl/)** — Live, repeatable pipeline using pandas + SQLAlchemy to pull current FRED economic indicators + Yahoo Finance stock data into PostgreSQL
 - **[Conductor Pipeline](projects/conductor-pipeline)** — Enterprise ETL/ELT platform (Kafka → PostgreSQL → Salesforce)
+- **[Real-Time Flight Delay Risk ETL](projects/flight-delay-risk-etl/)** — Live NOAA weather ingestion pipeline that calculates predictive Flight Delay Risk Scores (0–100) for 6 major U.S. airports, stores history in DuckDB, and auto-generates a dynamic visualization dashboard via GitHub Actions
 - **SQL Query Gallery** — Advanced, production-grade queries with explanations (coming soon)
 
 
