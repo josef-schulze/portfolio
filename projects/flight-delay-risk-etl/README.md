@@ -1,0 +1,113 @@
+# Real-Time Flight Delay Risk ETL
+
+A data engineering portfolio project that ingests live weather data from NOAA, calculates a predictive Flight Delay Risk Score (0-100) for 6 major U.S. airports (including STL), stores historical data in DuckDB, and automatically generates a beautiful visualization.
+
+![Flight Delay Risk Dashboard](./latest_risk.png)
+
+---
+
+## Features
+
+- Real-time data ingestion from NOAA National Weather Service (public JSON API, no keys required)
+- Intelligent Flight Delay Risk Score based on wind, visibility, precipitation, temperature, and gusts
+- Lightweight DuckDB warehouse with automatic 24-hour data retention
+- Professional Seaborn dashboard with rich condition details
+- Automated GitHub Actions workflow (hourly updates)
+- Fully self-contained and zero-cost
+
+---
+
+### Flight Delay Risk Score Algorithm (0–100)
+
+The risk score is calculated using the following weighted components:
+
+1. **Base Score** = (Wind Speed in mph × 1.5) + (Gust Speed in mph × 0.8)
+2. **Visibility Penalty**:
+   - < 1 mile → **+50**
+   - 1 to 3 miles → **+30**
+   - > 3 miles → **+0**
+3. **Precipitation / Severe Weather Penalty** → **+40** if the weather description contains any of: snow, thunderstorm, ice, freezing, rain, fog, or hail.
+4. **Temperature Extreme Penalty** → **+15** if temperature is below **23°F** or above **95°F**.
+
+**Final Score** = Sum of all components, then **constrained to the range 0–100**.  
+Any calculated value below 0 is set to 0, and any value above 100 is set to 100.
+
+This ensures the risk score is always a clean number between 0 (no weather risk) and 100 (extreme weather risk).
+
+---
+
+
+
+
+## Quick Start (Local)
+
+cd flight-delay-risk-etl
+
+# Create virtual environment
+python3 -m venv .venv
+source .venv/bin/activate
+
+# Install dependencies
+pip install -r requirements.txt
+
+# Run pipeline
+python etl.py
+python visualize.py
+
+Open latest_risk.png to see the live dashboard.
+
+---
+
+## GitHub Actions
+
+This project automatically updates every hour and on manual trigger:
+- Fetches latest weather observations
+- Calculates risk scores
+- Regenerates the visualization
+- Commits updated latest_risk.png and database
+
+---
+
+## What This Demonstrates
+
+- End-to-end ETL pipeline with real public data source
+- Domain-driven feature engineering (aviation weather risk)
+- Idempotent data handling and time-based pruning
+- Automated CI/CD with visualization output
+- Clean, maintainable, and production-ready code
+
+---
+
+## Project Structure
+
+flight-delay-risk-etl/
+├── config.py                 # Airport config & settings
+├── etl.py                    # Data ingestion + risk scoring
+├── visualize.py              # Dashboard generation
+├── requirements.txt
+├── .github/workflows/
+│   └── update-risk.yml       # Hourly automation
+├── flight_history.db         # Historical data
+├── latest_risk.png           # Auto-updated dashboard
+├── README.md
+└── UPDATED_FRD.md
+
+---
+
+## Technologies
+
+- Python 3
+- Requests, Pandas, DuckDB
+- Seaborn + Matplotlib
+- GitHub Actions
+- NOAA National Weather Service API
+
+---
+
+Live Dashboard: Updated hourly in this repository.
+
+Author: Josef Schulze – Senior Data Architect / Data Engineer
+
+---
+
+Part of a professional portfolio showcasing modern data engineering practices.
