@@ -78,22 +78,6 @@ This project automatically updates every hour and on manual trigger:
 
 ---
 
-## Project Structure
-
-flight-delay-risk-etl/
-├── config.py                 # Airport config & settings
-├── etl.py                    # Data ingestion + risk scoring
-├── visualize.py              # Dashboard generation
-├── requirements.txt
-├── .github/workflows/
-│   └── update-risk.yml       # Hourly automation
-├── flight_history.db         # Historical data
-├── latest_risk.png           # Auto-updated dashboard
-├── README.md
-└── UPDATED_FRD.md
-
----
-
 ## Technologies
 
 - Python 3
