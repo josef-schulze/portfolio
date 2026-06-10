@@ -1,7 +1,7 @@
 # Planning file not to publish
 flight-dalay-risk-etl.frd.txt
 flight-dalay-risk-etl.frd.md
-
+PROJECT_NOTES.txt
 
 # Environment files
 .venv/
