@@ -88,7 +88,8 @@ This project automatically updates at **:42 past every hour** (on the GitHub Act
 * **Seaborn + Matplotlib** - Visualization
 * **zoneinfo** - Timezone handling (Central Time)
 * **GitHub Actions** - Automated CI/CD pipeline
-* **NOAA National Weather Service API**
+* **NOAA National Weather Service API** - API Source data
+
 ---
 
 Live Dashboard: Updated hourly in this repository.
