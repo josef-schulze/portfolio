@@ -1,6 +1,6 @@
 # Real-Time Flight Delay Risk ETL
 
-A data engineering portfolio project that ingests live weather data from NOAA, calculates a predictive Flight Delay Risk Score (0–100) for six major U.S. airports, stores historical data in DuckDB, and automatically generates a dynamic multi-airport visualization dashboard with real-time conditions and trend analysis.
+A data engineering portfolio project that ingests live weather data from NOAA, calculates a predictive Flight Delay Risk Score (0-100) for six major U.S. airports, stores historical data in DuckDB, and automatically generates a dynamic multi-airport visualization dashboard with real-time conditions and trend analysis.
 
 ![Flight Delay Risk Dashboard](./latest_risk.png)
 
@@ -17,7 +17,7 @@ A data engineering portfolio project that ingests live weather data from NOAA, c
 
 ---
 
-### Flight Delay Risk Score Algorithm (0–100)
+### Flight Delay Risk Score Algorithm (0-100)
 
 The risk score is calculated using the following weighted components:
 
@@ -29,7 +29,7 @@ The risk score is calculated using the following weighted components:
 3. **Precipitation / Severe Weather Penalty** → **+40** if the weather description contains any of: snow, thunderstorm, ice, freezing, rain, fog, or hail.
 4. **Temperature Extreme Penalty** → **+15** if temperature is below **23°F** or above **95°F**.
 
-**Final Score** = Sum of all components, then **constrained to the range 0–100**.  
+**Final Score** = Sum of all components, then **constrained to the range 0-100**.  
 Any calculated value below 0 is set to 0, and any value above 100 is set to 100.
 
 This ensures the risk score is always a clean number between 0 (no weather risk) and 100 (extreme weather risk).
@@ -83,11 +83,11 @@ This project automatically updates at **:42 past every hour** (on the GitHub Act
 ## Technologies
 
 * **Python 3**
-* **Requests** – API data ingestion
-* **Pandas + DuckDB** – Data processing and storage
-* **Seaborn + Matplotlib** – Visualization
-* **zoneinfo** – Timezone handling (Central Time)
-* **GitHub Actions** – Automated CI/CD pipeline
+* **Requests** - API data ingestion
+* **Pandas + DuckDB** - Data processing and storage
+* **Seaborn + Matplotlib** - Visualization
+* **zoneinfo** - Timezone handling (Central Time)
+* **GitHub Actions** - Automated CI/CD pipeline
 * **NOAA National Weather Service API**
 ---
 
