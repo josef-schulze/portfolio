@@ -66,6 +66,8 @@ This project automatically updates at **:42 past every hour** (on the GitHub Act
 - Regenerates the visualization
 - Commits updated latest_risk.png and database
 
+> ⚠️ Note: Execution consistency may vary due to shared runner availability and free-tier limitations.
+
 ---
 
 ## What This Demonstrates
