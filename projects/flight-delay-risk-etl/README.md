@@ -1,6 +1,6 @@
 # Real-Time Flight Delay Risk ETL
 
-A data engineering portfolio project that ingests live weather data from NOAA, calculates a predictive Flight Delay Risk Score (0–100) for 6 major U.S. airports, stores historical data in DuckDB, and automatically generates a dynamic multi-airport visualization dashboard with real-time conditions and trend analysis.
+A data engineering portfolio project that ingests live weather data from NOAA, calculates a predictive Flight Delay Risk Score (0–100) for six major U.S. airports, stores historical data in DuckDB, and automatically generates a dynamic multi-airport visualization dashboard with real-time conditions and trend analysis.
 
 ![Flight Delay Risk Dashboard](./latest_risk.png)
 
@@ -9,11 +9,11 @@ A data engineering portfolio project that ingests live weather data from NOAA, c
 ## Features
 
 - Real-time data ingestion from NOAA National Weather Service (public JSON API, no keys required)
-- Intelligent Flight Delay Risk Score based on wind, visibility, precipitation, temperature, and gusts
+- Simplified Flight Delay Risk Score (demo algorithm) based on real-time weather factors: wind, visibility, precipitation, temperature, and gusts
 - Lightweight DuckDB warehouse with automatic 24-hour data retention
 - Professional Seaborn dashboard with rich condition details
 - Automated GitHub Actions workflow (hourly updates)
-- Fully self-contained and zero-cost
+- Fully self-contained zero-cost CI/CD pipeline (GitHub Actions)
 
 ---
 
@@ -34,7 +34,7 @@ Any calculated value below 0 is set to 0, and any value above 100 is set to 100.
 
 This ensures the risk score is always a clean number between 0 (no weather risk) and 100 (extreme weather risk).
 
-> ⚠️ **Portfolio Note on Data Intent:** This scoring algorithm functions as an engineering proxy designed to simulate high-variability metrics for ETL pipeline and data visualization testing. It is intentionally optimized to showcase data processing capabilities, error handling, and dynamic chart updates rather than true meteorological or FAA-certified aviation accuracy.
+> ⚠️ **Portfolio Note on Data Intent:** This scoring algorithm is a very simplified demo proxy. It is loosely designed to showcase the ETL pipeline, data processing, and visualization features — not to provide accurate real-world aviation or weather predictions.
 
 
 ---
@@ -43,14 +43,14 @@ This ensures the risk score is always a clean number between 0 (no weather risk)
 
 cd flight-delay-risk-etl
 
-# Create virtual environment
+## Create virtual environment
 python3 -m venv .venv
 source .venv/bin/activate
 
-# Install dependencies
+## Install dependencies
 pip install -r requirements.txt
 
-# Run pipeline
+## Run pipeline
 python etl.py
 python visualize.py
 
@@ -60,7 +60,7 @@ Open latest_risk.png to see the live dashboard.
 
 ## GitHub Actions
 
-This project automatically updates every hour and on manual trigger:
+This project automatically updates at **:42 past every hour** (on the GitHub Actions free tier) and on manual trigger:
 - Fetches latest weather observations
 - Calculates risk scores
 - Regenerates the visualization
@@ -73,7 +73,7 @@ This project automatically updates every hour and on manual trigger:
 - End-to-end ETL pipeline with real public data source
 - Domain-driven feature engineering (aviation weather risk)
 - Duplicate-resistant data loading with automatic 24-hour retention
-- Automated CI/CD pipeline that runs hourly, generates an updated visualization dashboard, and commits updated image and database to the repository
+- Automated CI/CD pipeline that runs hourly on GitHub Actions free tier, generates an updated visualization dashboard, and commits updated image and database to the repository. Note: Run consistency/timing can vary due to free-tier runner availability and shared resources.
 - Clean, well-structured code suitable for a portfolio demonstration
 
 ---
