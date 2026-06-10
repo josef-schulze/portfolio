@@ -20,7 +20,27 @@ def extract_numeric(value):
     return 0.0
 
 def calculate_risk_score(props):
-    """Calculate Flight Delay Risk Score"""
+    """
+    Calculate Flight Delay Risk Score from current weather observation.
+    
+    Note:
+        - 'props' is the 'properties' dictionary returned by the NOAA API.
+        - It comes from a specific airport's observation, identified by its
+          'icao' code (4-letter official code used for API calls).
+        - 'airport_code' (used elsewhere) is the display-friendly code stored
+          in the database and shown on the dashboard.
+    
+    This is a simplified demo algorithm for portfolio purposes only.
+    It is NOT meant for real aviation or meteorological use.
+    
+    Args:
+        props (dict): The 'properties' section from NOAA's latest observation
+                     response. Contains keys like windSpeed, windGust,
+                     visibility, temperature, textDescription, etc.
+    
+    Returns:
+        tuple: (risk_score: int 0-100, components: dict)
+    """
     if not props:
         return 0, {}
 
