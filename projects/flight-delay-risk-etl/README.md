@@ -80,12 +80,13 @@ This project automatically updates at **:42 past every hour** (on the GitHub Act
 
 ## Technologies
 
-- Python 3
-- Requests, Pandas, DuckDB
-- Seaborn + Matplotlib
-- GitHub Actions
-- NOAA National Weather Service API
-
+* **Python 3**
+* **Requests** – API data ingestion
+* **Pandas + DuckDB** – Data processing and storage
+* **Seaborn + Matplotlib** – Visualization
+* **zoneinfo** – Timezone handling (Central Time)
+* **GitHub Actions** – Automated CI/CD pipeline
+* **NOAA National Weather Service API**
 ---
 
 Live Dashboard: Updated hourly in this repository.
