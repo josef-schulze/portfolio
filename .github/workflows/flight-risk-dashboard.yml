@@ -1,10 +1,13 @@
 name: Update Flight Delay Risk Dashboard
 
+# Runs at :42 past every hour (less crowded than top of the hour)
+# Also allows manual trigger from the GitHub Actions tab
 on:
   schedule:
-    - cron: '0 * * * *'
+    - cron: '42 * * * *'
   workflow_dispatch:
 
+# Gives this workflow permission to push changes back to the repo
 permissions:
   contents: write
 
@@ -16,7 +19,10 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
+          # Fetch full git history - needed for git pull --rebase to work cleanly
           fetch-depth: 0
+          # Required so the workflow can push commits back to the repository
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -25,30 +31,39 @@ jobs:
 
       - name: Install dependencies
         run: |
+          # Move into the project folder where requirements.txt lives
           cd projects/flight-delay-risk-etl
-          pip install --upgrade pip
+          python -m pip install --upgrade pip
           pip install -r requirements.txt
 
       - name: Run ETL and Generate Dashboard
         run: |
+          # Run the full pipeline:
+          # 1. etl.py fetches live weather + calculates risk scores
+          # 2. visualize.py creates the latest_risk.png dashboard
           cd projects/flight-delay-risk-etl
           python etl.py
           python visualize.py
 
       - name: Commit and Push Changes
         run: |
-          git config --global --add safe.directory "$GITHUB_WORKSPACE"
+          cd projects/flight-delay-risk-etl
+          
+          # Configure git user for the automated commits
           git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@://github.com"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
           
-          git add projects/flight-delay-risk-etl/flight_history.db projects/flight-delay-risk-etl/latest_risk.png
+          # Pull latest changes from GitHub before committing
+          # This prevents "rejected" / "fetch first" errors
+          git pull --rebase origin main || true
           
+          # Stage the two files that may have changed
+          git add flight_history.db latest_risk.png
+          
+          # Only commit if there are actual changes
           if [ -n "$(git status --porcelain)" ]; then
             git commit -m "Update Flight Risk Dashboard - $(date +'%Y-%m-%d %H:%M UTC')"
-            
-            for i in {1..3}; do
-              git pull --rebase origin main && git push origin main && break || sleep 5
-            done
+            git push
           else
-            echo "No data changes detected. Skipping push."
+            echo "No changes to commit"
           fi
