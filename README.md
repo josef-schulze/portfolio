@@ -1,7 +1,7 @@
 # Josef Schulze - Senior Data Engineer
 Farmington, Missouri (Greater St. Louis Area)
 
-[Portfolio](https://github.com/josef-schulze/portfolio) | [GitHub](https://github.com/josef-schulze) | [LinkedIn](https://www.linkedin.com/in/josef-m-schulze) | [Email: josef.m.schulze@gmail.com](mailto:josef.m.schulze@gmail.com) 
+[Portfolio](https://josef-schulze.github.io/portfolio/) | [GitHub](https://github.com/josef-schulze/portfolio) | [LinkedIn](https://www.linkedin.com/in/josef-m-schulze) | [Email: josef.m.schulze@gmail.com](mailto:josef.m.schulze@gmail.com) 
 
 
 <br>
