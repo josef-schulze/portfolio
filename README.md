@@ -5,7 +5,6 @@ Farmington, Missouri (Greater St. Louis Area)
 
 
 
----
 
 ## Professional Summary
 
