@@ -3,9 +3,18 @@ name: Update Flight Delay Risk Dashboard
 # Runs at :42 past every hour (less crowded than top of the hour)
 # Also allows manual trigger from the GitHub Actions tab
 on:
-  schedule:
-    - cron: '42 * * * *'
+  # Switched from GitHub's built-in schedule trigger to cron-job.org
+  # for significantly better reliability on hourly runs.
+  # See: https://console.cron-job.org/jobs/7785538
+
+  #schedule:
+  #  - cron: '42 * * * *'
+
   workflow_dispatch:
+
+concurrency:
+  group: flight-risk-dashboard
+  cancel-in-progress: true
 
 # Gives this workflow permission to push changes back to the repo
 permissions:
