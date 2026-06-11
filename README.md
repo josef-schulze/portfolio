@@ -1,8 +1,9 @@
 # Josef Schulze - Senior Data Engineer
 
-Portfolio | GitHub | Open to: Onsite / Hybrid / Remote / Contract Opportunities
+Portfolio | <a href="https://github.com/josef-schulze/portfolio" target="_blank">GitHub</a> | Open to: Onsite / Hybrid / Remote / Contract Opportunities
 
-[LinkedIn](https://www.linkedin.com/in/josef-m-schulze) | [Email](mailto:josef.m.schulze@gmail.com) | Farmington, Missouri (Greater St. Louis Area)
+<a href="https://www.linkedin.com/in/josef-m-schulze" target="_blank">LinkedIn</a> | [Josef.M.Schulze@gmail.com](mailto:josef.m.schulze@gmail.com) | Farmington, Missouri (Greater St. Louis Area)
+
 
 ---
 
